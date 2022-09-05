@@ -122,10 +122,12 @@ void PhysicsEditor::OnStartLevel() {
 }
 
 void PhysicsEditor::OnCamNavActive() {
+  set_physics();
   m_bml->AddTimer(1u, [this]() { set_physics(); });
 }
 
 void PhysicsEditor::OnBallNavActive() {
+  set_physics();
   m_bml->AddTimer(1u, [this]() { set_physics(); });
 }
 
