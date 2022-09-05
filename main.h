@@ -21,6 +21,7 @@ public:
   DECLARE_BML_VERSION;
 
   virtual void OnLoad() override;
+  virtual void OnPostLoadLevel() override;
   virtual void OnPostStartMenu() override;
   virtual void OnStartLevel() override;
   virtual void OnCamNavActive() override;

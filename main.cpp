@@ -79,13 +79,12 @@ void PhysicsEditor::OnLoad() {
   status->SetFont(ExecuteBB::GAMEFONT_03);
   status->SetZOrder(20);
   status->SetVisible(false);
-
   update_config();
 
   time_manager = m_bml->GetTimeManager();
 }
 
-void PhysicsEditor::OnPostStartMenu() {
+void PhysicsEditor::OnPostLoadLevel() {
   if (init)
     return;
 
@@ -113,9 +112,10 @@ void PhysicsEditor::OnPostStartMenu() {
     "reset Level"), "Set Physics Globals"));
 
   set_physics();
-  time_manager->SetTimeScaleFactor(game_speed);
+}
 
-  init = true;
+void PhysicsEditor::OnPostStartMenu() {
+  time_manager->SetTimeScaleFactor(game_speed);
 }
 
 void PhysicsEditor::OnStartLevel() {
