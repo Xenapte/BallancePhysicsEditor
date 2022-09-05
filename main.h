@@ -1,7 +1,9 @@
 #pragma once
 
-#include <BML/BMLAll.h>
+#include <BMLPlus/BMLAll.h>
 #include <memory>
+
+typedef const char* C_CKSTRING;
 
 extern "C" {
   __declspec(dllexport) IMod* BMLEntry(IBML* bml);
@@ -11,11 +13,11 @@ class PhysicsEditor : public IMod {
 public:
   PhysicsEditor(IBML* bml) : IMod(bml) {}
 
-  virtual CKSTRING GetID() override { return "PhysicsEditor"; }
-  virtual CKSTRING GetVersion() override { return BML_VERSION; }
-  virtual CKSTRING GetName() override { return "Physics Editor"; }
-  virtual CKSTRING GetAuthor() override { return "BallanceBug"; }
-  virtual CKSTRING GetDescription() override { return "A simple mod for editing your physics settings."; }
+  virtual C_CKSTRING GetID() override { return "PhysicsEditor"; }
+  virtual C_CKSTRING GetVersion() override { return BML_VERSION; }
+  virtual C_CKSTRING GetName() override { return "Physics Editor"; }
+  virtual C_CKSTRING GetAuthor() override { return "BallanceBug"; }
+  virtual C_CKSTRING GetDescription() override { return "A simple mod for editing your physics settings."; }
   DECLARE_BML_VERSION;
 
   virtual void OnLoad() override;
@@ -24,7 +26,7 @@ public:
   virtual void OnCamNavActive() override;
   virtual void OnBallNavActive() override;
   virtual void OnProcess() override;
-  virtual void OnModifyConfig(CKSTRING category, CKSTRING key, IProperty* prop) override;
+  virtual void OnModifyConfig(C_CKSTRING category, C_CKSTRING key, IProperty* prop) override;
 
 private:
   std::vector<CKBehavior*> physics_bb;

@@ -113,6 +113,7 @@ void PhysicsEditor::OnPostStartMenu() {
     "reset Level"), "Set Physics Globals"));
 
   set_physics();
+  time_manager->SetTimeScaleFactor(game_speed);
 
   init = true;
 }
@@ -123,20 +124,19 @@ void PhysicsEditor::OnStartLevel() {
 
 void PhysicsEditor::OnCamNavActive() {
   set_physics();
-  m_bml->AddTimer(1u, [this]() { set_physics(); });
+  m_bml->AddTimer(1ul, [this]() { set_physics(); });
 }
 
 void PhysicsEditor::OnBallNavActive() {
   set_physics();
-  m_bml->AddTimer(1u, [this]() { set_physics(); });
+  m_bml->AddTimer(1ul, [this]() { set_physics(); });
 }
 
 void PhysicsEditor::OnProcess() {
   status->Process();
-  if (game_speed != 1.0f)
-    time_manager->SetTimeScaleFactor(game_speed);
 }
 
-void PhysicsEditor::OnModifyConfig(CKSTRING category, CKSTRING key, IProperty* prop) {
+void PhysicsEditor::OnModifyConfig(C_CKSTRING category, C_CKSTRING key, IProperty* prop) {
   update_config();
+  time_manager->SetTimeScaleFactor(game_speed);
 }
