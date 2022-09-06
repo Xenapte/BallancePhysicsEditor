@@ -40,6 +40,7 @@ private:
   float game_speed = 1.0f;
   CKTimeManager* time_manager;
   bool init = false;
+  bool disabled = true;
 
   void set_physics();
   void update_config();
