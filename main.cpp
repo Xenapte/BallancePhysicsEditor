@@ -24,7 +24,12 @@ void PhysicsEditor::update_config() {
   time_factor = prop_time_factor->GetFloat();
   game_speed = prop_game_speed->GetFloat();
 
-  if (gravity != default_gravity || time_factor != default_time_factor || game_speed != 1.0f) {
+  disabled = !(gravity != default_gravity || time_factor != default_time_factor || game_speed != 1.0f);
+
+  if (disabled) {
+    status->SetVisible(false);
+  }
+  else {
     std::string text = "PhysicsEditor";
     if (gravity != default_gravity) {
       std::string gravity_text(128, 0);
@@ -47,9 +52,7 @@ void PhysicsEditor::update_config() {
     status->SetText(text.c_str());
     status->SetVisible(true);
   }
-  else {
-    status->SetVisible(false);
-  }
+  status->Process();
 }
 
 void PhysicsEditor::OnLoad() {
@@ -118,20 +121,24 @@ void PhysicsEditor::OnPostStartMenu() {
 }
 
 void PhysicsEditor::OnStartLevel() {
+  if (disabled) return;
   set_physics();
 }
 
 void PhysicsEditor::OnCamNavActive() {
+  if (disabled) return;
   set_physics();
   m_bml->AddTimer(1u, [this]() { set_physics(); });
 }
 
 void PhysicsEditor::OnBallNavActive() {
+  if (disabled) return;
   set_physics();
   m_bml->AddTimer(1u, [this]() { set_physics(); });
 }
 
 void PhysicsEditor::OnProcess() {
+  if (disabled) return;
   status->Process();
   if (game_speed != 1.0f)
     time_manager->SetTimeScaleFactor(game_speed);

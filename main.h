@@ -12,7 +12,7 @@ public:
   PhysicsEditor(IBML* bml) : IMod(bml) {}
 
   virtual CKSTRING GetID() override { return "PhysicsEditor"; }
-  virtual CKSTRING GetVersion() override { return BML_VERSION; }
+  virtual CKSTRING GetVersion() override { return "0.0.2"; }
   virtual CKSTRING GetName() override { return "Physics Editor"; }
   virtual CKSTRING GetAuthor() override { return "BallanceBug"; }
   virtual CKSTRING GetDescription() override { return "A simple mod for editing your physics settings."; }
@@ -37,6 +37,7 @@ private:
   float game_speed = 1.0f;
   CKTimeManager* time_manager;
   bool init = false;
+  bool disabled = true;
 
   void set_physics();
   void update_config();
