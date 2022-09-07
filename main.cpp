@@ -33,19 +33,19 @@ void PhysicsEditor::update_config() {
     std::string text = "PhysicsEditor";
     if (gravity != default_gravity) {
       std::string gravity_text(128, 0);
-      gravity_text.resize(snprintf(gravity_text.data(), 128, " | Gravity: %.2f, %.2f (%.f%%), %.2f",
+      gravity_text.resize(snprintf(gravity_text.data(), 128, " | Gravity: %.4g, %.4g (%.4g%%), %.4g",
                                   gravity.x, gravity.y, gravity.y / default_gravity.y * 100, gravity.z));
       text += gravity_text;
     }
     if (time_factor != default_time_factor) {
       std::string time_text(64, 0);
-      time_text.resize(snprintf(time_text.data(), 64, " | Time factor: %.2fx (%.f%%)",
+      time_text.resize(snprintf(time_text.data(), 64, " | Time factor: %.4gx (%.4g%%)",
                                time_factor, time_factor / default_time_factor * 100));
       text += time_text;
     }
     if (game_speed != 1.0f) {
       std::string text_game_speed(64, 0);
-      text_game_speed.resize(snprintf(text_game_speed.data(), 64, " | Game speed: %.2fx",
+      text_game_speed.resize(snprintf(text_game_speed.data(), 64, " | Game speed: %.4gx",
                                  game_speed));
       text += text_game_speed;
     }
