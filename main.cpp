@@ -83,8 +83,6 @@ void PhysicsEditor::OnLoad() {
   status->SetZOrder(20);
   status->SetVisible(false);
   update_config();
-
-  time_manager = m_bml->GetTimeManager();
 }
 
 void PhysicsEditor::OnPostLoadLevel() {
@@ -115,12 +113,14 @@ void PhysicsEditor::OnPostLoadLevel() {
     "reset Level"), "Set Physics Globals"));
 
   set_physics();
+
+  init = true;
 }
 
 void PhysicsEditor::OnPostStartMenu() {
   if (init)
     return;
-  time_manager->SetTimeScaleFactor(game_speed);
+  m_bml->GetTimeManager()->SetTimeScaleFactor(game_speed);
 }
 
 void PhysicsEditor::OnStartLevel() {
@@ -147,5 +147,5 @@ void PhysicsEditor::OnProcess() {
 
 void PhysicsEditor::OnModifyConfig(C_CKSTRING category, C_CKSTRING key, IProperty* prop) {
   update_config();
-  time_manager->SetTimeScaleFactor(game_speed);
+  m_bml->GetTimeManager()->SetTimeScaleFactor(game_speed);
 }
